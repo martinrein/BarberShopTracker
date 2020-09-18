@@ -3,12 +3,12 @@ from tkinter import messagebox
 
 # Creating the Window
 root = Tk()
-root.geometry('500x500')
+root.geometry('500x750')
 root.title("Registration Form")
 
 # Creating Label and Entry Widgets
 label_header = Label(root, text="Registration Form", width=20,font=("bold",30))
-label_header.place(relx=0.5, rely=0.08, anchor=CENTER)
+label_header.place(relx=0.5, rely=0.05, anchor=CENTER)
 
 label_1 = Label(root, text="Name", width=20,font=("bold",12))
 label_1.place(relx=0.4, rely=0.2, anchor=E)
@@ -33,8 +33,6 @@ def popupConfirm():
 #     text_file.append(.get())
 #     text_file.close()
 
-#frame = LabelFrame(root, text = "Registration",padx=100, pady=100)
-#frame.pack(padx=10, pady=10)
 myButton = Button(root, text="Submit", width=20, command = popupConfirm)
 myButton.place(relx=0.5, rely=0.9, anchor=CENTER)
 #myButton.pack()
