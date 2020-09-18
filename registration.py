@@ -1,18 +1,22 @@
 from tkinter import *
 from tkinter import messagebox
 
+# Creating the Window
 root = Tk()
 root.geometry('500x500')
 root.title("Registration Form")
 
-label_0 = Label(root, text="Registration Form", width=20,font=("bold",20))
-label_0.place(relx=0.5, rely=0.1, anchor=CENTER)
-entry_name = Entry(root, width=20)
-entry_name.place(relx=0.5, rely=0.2, anchor=CENTER)
-#entry_name.pack()
+# Creating Label and Entry Widgets
+label_header = Label(root, text="Registration Form", width=20,font=("bold",30))
+label_header.place(relx=0.5, rely=0.08, anchor=CENTER)
+
+label_1 = Label(root, text="Name", width=20,font=("bold",12))
+label_1.place(relx=0.4, rely=0.2, anchor=E)
+entry_1 = Entry(root, width=20)
+entry_1.place(relx=0.6, rely=0.2, anchor=CENTER)
 
 def myClick():
-    name = entry_name.get()
+    name = entry_1.get()
     myLabel = Label(root, text = name, padx=20, pady=20)#.grid(row=0, column=0)
     myLabel.pack()
 
@@ -31,11 +35,8 @@ def popupConfirm():
 
 #frame = LabelFrame(root, text = "Registration",padx=100, pady=100)
 #frame.pack(padx=10, pady=10)
-#label_name = Label(root, text="hello").grid(row=1, column=0)
 myButton = Button(root, text="Submit", width=20, command = popupConfirm)
 myButton.place(relx=0.5, rely=0.9, anchor=CENTER)
 #myButton.pack()
 
 root.mainloop()
-
-#e.insert(0, "Enter Your Name: ")
