@@ -14,8 +14,8 @@ frame_register_form = LabelFrame(root, text = " CEE Barber Shop ", pady=50,label
 #frame_register_form.place(relx=0.5, rely=0.2, anchor=CENTER,width=400)
 frame_register_form.pack(fill="both", expand=True,padx=20, pady=80)
 
-# label_1 = Label(frame_register_form, text="Name", width=20,font=("bold",12))
-# #label_1.place(relx=0.5, rely=0.5)
+label_1 = Label(frame_register_form, text="Name", width=10,font=("bold",12))
+label_1.place(relx=0.05, rely=-0.05)
 
 # label_2 = Label(frame_register_form, text="Date", width=20,font=("bold",12))
 # label_2.
