@@ -2,4 +2,8 @@ Name: Sample Name
 Contact No.: 1234567
 Email: sample@email.com
 Address: Sample, Address
+Question 1-5: NO, NO, NO, NO, NO
+Question 6-10: YES, YES, NO, NO, NO
+Question 6 Stated: asthma
+Question 7 Stated: Philippines
 

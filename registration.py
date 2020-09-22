@@ -9,6 +9,7 @@ root.title("CEE Barber Shop")
 # Create Main Frame
 frame_register_form = LabelFrame(root, text = " CEE Barber Shop ", pady=50,labelanchor=N, bd=5,font=("bold",20), relief=RIDGE)
 frame_register_form.pack(fill="both", expand=True,padx=20, pady=80)
+white_frame = Frame(width=440, height=550, background="white")
 
 # Create Registration Label Widgets
 label_header = Label(root, text="Registration Form", width=20,font=("bold",30))
@@ -35,15 +36,37 @@ entry_3 = Entry(frame_register_form, width=30)
 entry_3.place(relx=0.6, rely=0.175, anchor=CENTER)
 entry_4 = Entry(frame_register_form, width=30)
 entry_4.place(relx=0.6, rely=0.275, anchor=CENTER)
+q6_entry = Entry(white_frame, width=19)
+q7_entry = Entry(white_frame, width=19)
+
+# Set Variables of Questionnaire Answers
+q1_value = StringVar()
+q2_value = StringVar()
+q3_value = StringVar()
+q4_value = StringVar()
+q5_value = StringVar()
+q6_value = StringVar()
+q7_value = StringVar()
+q8_value = StringVar()
+q9_value = StringVar()
+q10_value = StringVar()
 
 def get_customer():
-    customer = 'Name: ' + entry_1.get() + '\nContact No.: ' + entry_2.get() + '\nEmail: ' + entry_3.get() + '\nAddress: ' + entry_4.get() + '\n\n'
+    customer = 'Name: ' + entry_1.get() + '\nContact No.: ' + entry_2.get() + '\nEmail: ' + entry_3.get() + '\nAddress: ' + entry_4.get()
     save_to_file(customer)
 
+def get_question():
+    answers = '\nQuestion 1-5: ' + str(q1_value.get()) + ', ' + str(q2_value.get()) + ', ' + str(q3_value.get()) + ', ' + str(q4_value.get()) + ', ' + str(q5_value.get()) + '\nQuestion 6-10: ' + str(q6_value.get()) + ', ' + str(q7_value.get()) + ', ' + str(q8_value.get()) + ', ' + str(q9_value.get()) + ', ' + str(q10_value.get())
+    save_to_file(answers)
+
+def get_question_stated():
+    stated = '\nQuestion 6 Stated: ' + q6_entry.get() + '\nQuestion 7 Stated: ' + q7_entry.get() + '\n\n'
+    save_to_file(stated)
+    
 # Saves the registered user's information to a text file.
-def save_to_file(customer):
+def save_to_file(info):
     text_file = open("registered_users.txt", 'a')
-    text_file.write(customer)
+    text_file.write(info)
     text_file.close()
 
 def submit_registration():
@@ -51,22 +74,12 @@ def submit_registration():
     
     if response == 1:   # If response is 'OK'
         get_customer()
+        get_question()
+        get_question_stated()
         root.quit()
 
 def questionnaire():
-    q1_value = StringVar()
-    q2_value = StringVar()
-    q3_value = StringVar()
-    q4_value = StringVar()
-    q5_value = StringVar()
-    q6_value = StringVar()
-    q7_value = StringVar()
-    q8_value = StringVar()
-    q9_value = StringVar()
-    q10_value = StringVar()
-
     # Create Blank Frame
-    white_frame = Frame(width=440, height=550, background="white")
     white_frame.place(in_=frame_register_form, anchor="c", relx=.5, rely=.5)
     
     # Create Label Widgets
@@ -76,10 +89,10 @@ def questionnaire():
     label_yes.place(relx=0.795, rely=0)
     label_no = Label(white_frame, text="NO", width=3,font=("arial bold",12))
     label_no.place(relx=0.895, rely=0)
-    label_ifyes_1 = Label(white_frame, text="If YES please state here: ", width=20,font=("bold",12))
-    label_ifyes_1.place(relx=0.03, rely=0.52)
-    label_ifyes_2 = Label(white_frame, text="If YES please state here: ", width=20,font=("bold",12))
-    label_ifyes_2.place(relx=0.03, rely=0.64)
+    label_ifyes_1 = Label(white_frame, text="If YES please state here: ", width=17,font=("bold",12))
+    label_ifyes_1.place(relx=0.055, rely=0.52)
+    label_ifyes_2 = Label(white_frame, text="If YES please state here: ", width=17,font=("bold",12))
+    label_ifyes_2.place(relx=0.055, rely=0.64)
 
     # Create Question Label Widgets 
     q1 = Label(white_frame, text="1.   Have you been experiencing any colds lately?", width=40,font=("bold",12), anchor=W,justify=LEFT)
@@ -103,33 +116,41 @@ def questionnaire():
     q10 = Label(white_frame, text="10. Do you agree to follow the rules and regulations\n       regarding COVID-19 safety and precautions?", width=40,font=("bold",12), anchor=W,justify=LEFT)
     q10.place(relx=0.01, rely=0.85)
 
-    # Create Questionnaire Entry Widgets
-    q1_entry = Entry(white_frame, width=19)
-    q1_entry.place(relx=0.58, rely=0.54, anchor=CENTER)
-    q2_entry = Entry(white_frame, width=19)
-    q2_entry.place(relx=0.58, rely=0.66, anchor=CENTER)
+    # Place Questionnaire Entry Widgets
+    q6_entry.place(relx=0.58, rely=0.541, anchor=CENTER)
+    q7_entry.place(relx=0.58, rely=0.661, anchor=CENTER)
 
     # Create Yes or No Radio Buttons
     Radiobutton(white_frame, variable = q1_value, value = "YES").place(relx=0.8, rely=0.048)
     Radiobutton(white_frame, variable = q1_value, value = "NO").place(relx=0.9, rely=0.048)
+    q1_value.set(0)
     Radiobutton(white_frame, variable = q2_value, value = "YES").place(relx=0.8, rely=0.125)
     Radiobutton(white_frame, variable = q2_value, value = "NO").place(relx=0.9, rely=0.125)
+    q2_value.set(0)
     Radiobutton(white_frame, variable = q3_value, value = "YES").place(relx=0.8, rely=0.207)
     Radiobutton(white_frame, variable = q3_value, value = "NO").place(relx=0.9, rely=0.207)
+    q3_value.set(0)
     Radiobutton(white_frame, variable = q4_value, value = "YES").place(relx=0.8, rely=0.288)
     Radiobutton(white_frame, variable = q4_value, value = "NO").place(relx=0.9, rely=0.288)
+    q4_value.set(0)
     Radiobutton(white_frame, variable = q5_value, value = "YES").place(relx=0.8, rely=0.368)
     Radiobutton(white_frame, variable = q5_value, value = "NO").place(relx=0.9, rely=0.368)
+    q5_value.set(0)
     Radiobutton(white_frame, variable = q6_value, value = "YES").place(relx=0.8, rely=0.447)
     Radiobutton(white_frame, variable = q6_value, value = "NO").place(relx=0.9, rely=0.447)
+    q6_value.set(0)
     Radiobutton(white_frame, variable = q7_value, value = "YES").place(relx=0.8, rely=0.57)
     Radiobutton(white_frame, variable = q7_value, value = "NO").place(relx=0.9, rely=0.57)
+    q7_value.set(0)
     Radiobutton(white_frame, variable = q8_value, value = "YES").place(relx=0.8, rely=0.685)
     Radiobutton(white_frame, variable = q8_value, value = "NO").place(relx=0.9, rely=0.685)
+    q8_value.set(0)
     Radiobutton(white_frame, variable = q9_value, value = "YES").place(relx=0.8, rely=0.765)
     Radiobutton(white_frame, variable = q9_value, value = "NO").place(relx=0.9, rely=0.765)
+    q9_value.set(0)
     Radiobutton(white_frame, variable = q10_value, value = "YES").place(relx=0.8, rely=0.85)
     Radiobutton(white_frame, variable = q10_value, value = "NO").place(relx=0.9, rely=0.85)
+    q10_value.set(0)
 
     myButton = Button(root, text="Submit", width=10, command = submit_registration)
     myButton.place(relx=0.5, rely=0.95, anchor=CENTER)
