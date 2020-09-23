@@ -187,6 +187,8 @@ def questionnaire():
     submitButton = Button(root, text="Submit", width=10, command = submit_registration)
     submitButton.place(relx=0.5, rely=0.95, anchor=CENTER)
 
+timeButton = Button(root, text="-- Select an Appointment --", width=21, command = select_time)
+timeButton.place(relx=0.5, rely=0.559, anchor=CENTER)
 nextButton = Button(root, text="Next >>", width=10, command = questionnaire)
 nextButton.place(relx=0.5, rely=0.95, anchor=CENTER)
 
