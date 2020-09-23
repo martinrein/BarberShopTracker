@@ -8,73 +8,6 @@ root.geometry('500x750')
 root.title("CEE Barber Shop")
 
 # -- Insert Functions Here --
-
-# Create Main Frame
-frame_register_form = LabelFrame(root, text = " CEE Barber Shop ", pady=50,labelanchor=N, bd=5,font=("bold",20), relief=RIDGE)
-frame_register_form.pack(fill="both", expand=True,padx=20, pady=80)
-white_frame = Frame(width=440, height=550, background="white")
-
-# Create Registration Label Widgets
-label_header = Label(root, text="Registration Form", width=20,font=("bold",30))
-label_header.place(relx=0.5, rely=0.05, anchor=CENTER)
-label_1 = Label(frame_register_form, text="Name", width=10,font=("bold",12))
-label_1.place(relx=0.05, rely=-0.05)
-label_2 = Label(frame_register_form, text="Contact No.", width=10,font=("bold",12))
-label_2.place(relx=0.09, rely=0.05)
-label_3 = Label(frame_register_form, text="Email", width=10,font=("bold",12))
-label_3.place(relx=0.05, rely=0.15)
-label_4 = Label(frame_register_form, text="Address", width=10,font=("bold",12))
-label_4.place(relx=0.07, rely=0.25)
-label_5 = Label(frame_register_form, text="Barber", width=10,font=("bold",12))
-label_5.place(relx=0.06, rely=0.35)
-label_6 = Label(frame_register_form, text="Date", width=10,font=("bold",12))
-label_6.place(relx=0.05, rely=0.45)
-label_7 = Label(frame_register_form, text="Time", width=10,font=("bold",12))
-label_7.place(relx=0.05, rely=0.55)
-
-# Create Registration Entry Widgets
-entry_1 = Entry(frame_register_form, width=30)
-entry_1.place(relx=0.6, rely=-0.025, anchor=CENTER)
-entry_2 = Entry(frame_register_form, width=30)
-entry_2.place(relx=0.6, rely=0.075, anchor=CENTER)
-entry_3 = Entry(frame_register_form, width=30)
-entry_3.place(relx=0.6, rely=0.175, anchor=CENTER)
-entry_4 = Entry(frame_register_form, width=30)
-entry_4.place(relx=0.6, rely=0.275, anchor=CENTER)
-q6_entry = Entry(white_frame, width=19)
-q7_entry = Entry(white_frame, width=19)
-
-# Get List of Barbers from text file 'barbers.txt'
-with open('barbers.txt', 'r') as f:
-    barbers_list = json.loads(f.read())
-
-barbers_list.insert(0,"-- Select a Barber --")
-barber_choice = StringVar()
-barber_choice.set(barbers_list[0])
-barber_dropdown = OptionMenu(root, barber_choice, *barbers_list)
-barber_dropdown.place(relx=0.302, rely=0.42)
-
-with open('open_dates.txt', 'r') as f:
-    date_list = json.loads(f.read())
-
-date_list.insert(0,"-- Select from Available Dates --")
-date_choice = StringVar()
-date_choice.set(date_list[0])
-date_dropdown = OptionMenu(root, date_choice, *date_list)
-date_dropdown.place(relx=0.302, rely=0.48)
-
-# Set Variables of Questionnaire Answers
-q1_value = StringVar()
-q2_value = StringVar()
-q3_value = StringVar()
-q4_value = StringVar()
-q5_value = StringVar()
-q6_value = StringVar()
-q7_value = StringVar()
-q8_value = StringVar()
-q9_value = StringVar()
-q10_value = StringVar()
-
 def select_time():
     if (str(barber_choice.get()) != "-- Select a Barber --") & (str(date_choice.get()) != "-- Select from Available Dates --"):
         time_window = Toplevel()
@@ -84,7 +17,7 @@ def select_time():
         messagebox.showerror("Invalid Registration","Please select a Barber and Date")
 
 def get_customer():
-    customer = 'Name: ' + entry_1.get() + '\nContact No.: ' + entry_2.get() + '\nEmail: ' + entry_3.get() + '\nAddress: ' + entry_4.get()
+    customer = 'Name: ' + entry_1.get() + '\nContact No.: ' + entry_2.get() + '\nEmail: ' + entry_3.get() + '\nAddress: ' + entry_4.get() + '\nBarber: ' + barber_choice.get() + '\nDate: ' + date_choice.get() + '\nTime: '
     save_to_file(customer)
 
 def get_question():
@@ -114,6 +47,11 @@ def questionnaire():
     # Create Blank Frame
     white_frame.place(in_=frame_register_form, anchor="c", relx=.5, rely=.5)
     
+    # Remove unnecessary Widgets
+    barber_dropdown.destroy()
+    date_dropdown.destroy()
+    timeButton.destroy()
+
     # Create Label Widgets
     label_header = Label(root, text="Questionnaire", width=20,font=("bold",30))
     label_header.place(relx=0.5, rely=0.05, anchor=CENTER)
@@ -187,6 +125,73 @@ def questionnaire():
     submitButton = Button(root, text="Submit", width=10, command = submit_registration)
     submitButton.place(relx=0.5, rely=0.95, anchor=CENTER)
 
+# Create Main Frame
+frame_register_form = LabelFrame(root, text = " CEE Barber Shop ", pady=50,labelanchor=N, bd=5,font=("bold",20), relief=RIDGE)
+frame_register_form.pack(fill="both", expand=True,padx=20, pady=80)
+white_frame = Frame(width=440, height=550, background="white")
+
+# Create Registration Label Widgets
+label_header = Label(root, text="Registration Form", width=20,font=("bold",30))
+label_header.place(relx=0.5, rely=0.05, anchor=CENTER)
+label_1 = Label(frame_register_form, text="Name", width=10,font=("bold",12))
+label_1.place(relx=0.05, rely=-0.05)
+label_2 = Label(frame_register_form, text="Contact No.", width=10,font=("bold",12))
+label_2.place(relx=0.09, rely=0.05)
+label_3 = Label(frame_register_form, text="Email", width=10,font=("bold",12))
+label_3.place(relx=0.05, rely=0.15)
+label_4 = Label(frame_register_form, text="Address", width=10,font=("bold",12))
+label_4.place(relx=0.07, rely=0.25)
+label_5 = Label(frame_register_form, text="Barber", width=10,font=("bold",12))
+label_5.place(relx=0.06, rely=0.35)
+label_6 = Label(frame_register_form, text="Date", width=10,font=("bold",12))
+label_6.place(relx=0.05, rely=0.45)
+label_7 = Label(frame_register_form, text="Time", width=10,font=("bold",12))
+label_7.place(relx=0.05, rely=0.55)
+
+# Create Registration Entry Widgets
+entry_1 = Entry(frame_register_form, width=30)
+entry_1.place(relx=0.6, rely=-0.025, anchor=CENTER)
+entry_2 = Entry(frame_register_form, width=30)
+entry_2.place(relx=0.6, rely=0.075, anchor=CENTER)
+entry_3 = Entry(frame_register_form, width=30)
+entry_3.place(relx=0.6, rely=0.175, anchor=CENTER)
+entry_4 = Entry(frame_register_form, width=30)
+entry_4.place(relx=0.6, rely=0.275, anchor=CENTER)
+q6_entry = Entry(white_frame, width=19)
+q7_entry = Entry(white_frame, width=19)
+
+# Get List of Barbers from text file 'barbers.txt'
+with open('barbers.txt', 'r') as f:
+    barbers_list = json.loads(f.read())
+
+barbers_list.insert(0,"-- Select a Barber --")
+barber_choice = StringVar()
+barber_choice.set(barbers_list[0])
+barber_dropdown = OptionMenu(root, barber_choice, *barbers_list)
+barber_dropdown.place(relx=0.302, rely=0.42)
+
+with open('open_dates.txt', 'r') as f:
+    date_list = json.loads(f.read())
+
+date_list.insert(0,"-- Select from Available Dates --")
+date_choice = StringVar()
+date_choice.set(date_list[0])
+date_dropdown = OptionMenu(root, date_choice, *date_list)
+date_dropdown.place(relx=0.302, rely=0.48)
+
+# Set Variables of Questionnaire Answers
+q1_value = StringVar()
+q2_value = StringVar()
+q3_value = StringVar()
+q4_value = StringVar()
+q5_value = StringVar()
+q6_value = StringVar()
+q7_value = StringVar()
+q8_value = StringVar()
+q9_value = StringVar()
+q10_value = StringVar()
+
+# Create Buttons
 timeButton = Button(root, text="-- Select an Appointment --", width=21, command = select_time)
 timeButton.place(relx=0.5, rely=0.559, anchor=CENTER)
 nextButton = Button(root, text="Next >>", width=10, command = questionnaire)
