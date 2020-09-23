@@ -160,19 +160,18 @@ entry_4.place(relx=0.6, rely=0.275, anchor=CENTER)
 q6_entry = Entry(white_frame, width=19)
 q7_entry = Entry(white_frame, width=19)
 
-# Get List of Barbers from text file 'barbers.txt'
+# Get List of Barbers from text file 'barbers.txt' and create Barber Dropdown Menu
 with open('barbers.txt', 'r') as f:
     barbers_list = json.loads(f.read())
-
 barbers_list.insert(0,"-- Select a Barber --")
 barber_choice = StringVar()
 barber_choice.set(barbers_list[0])
 barber_dropdown = OptionMenu(root, barber_choice, *barbers_list)
 barber_dropdown.place(relx=0.302, rely=0.42)
 
+# Get List of Available Dates from text file 'open_dates.txt' and create Date Dropdown Menu
 with open('open_dates.txt', 'r') as f:
     date_list = json.loads(f.read())
-
 date_list.insert(0,"-- Select from Available Dates --")
 date_choice = StringVar()
 date_choice.set(date_list[0])
