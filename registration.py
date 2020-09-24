@@ -28,11 +28,13 @@ def select_time():
         schedule_dict = ast.literal_eval(sched_contents)
         file_schedule.close()
 
-        # Create Buttons for available slots and red boxes for slots taken
-        if schedule_dict['10:00 AM'] == "":
-            # button
+        # Create Buttons for available slots and slots taken
+        if schedule_dict['10:00 AM'] != "":
+            button_10am = Button(time_window, text="10:00 AM - 10:30 AM", width=10)#, command = questionnaire)
+            button_10am.place(relx=0.5, rely=0.5, anchor=CENTER)
         else:
-            # red
+            red_10am = Button(time_window, text="10:00 AM - 10:30 AM", width=20,fg='red')#, command = questionnaire)
+            red_10am.place(anchor="c", relx=.5, rely=.5)
 
     else:
         messagebox.showerror("Invalid","Please select a Barber and Date")
