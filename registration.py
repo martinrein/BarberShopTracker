@@ -1,20 +1,41 @@
 from tkinter import *
 from tkinter import messagebox
 import json
+import os
+import ast
 
 # Create the Window
 root = Tk()
 root.geometry('500x750')
 root.title("CEE Barber Shop")
 
-# -- Insert Functions Here --
 def select_time():
     if (str(barber_choice.get()) != "-- Select a Barber --") & (str(date_choice.get()) != "-- Select from Available Dates --"):
         time_window = Toplevel()
+        time_window.geometry('500x500')
         time_window.title('Select an Appointment')
 
+        # Create Schedule File if the file does not exist yet
+        schedule_file_name = date_choice.get() + '_' + barber_choice.get() + '.txt'
+        if (os.path.exists('./' + schedule_file_name)) == False:
+            schedule_dict = {"10:00 AM":"","10:30 AM":"","11:00 AM":"","11:30 AM":"","12:00 PM":"","12:30 PM":"","1:00 PM":"","1:30 PM":"","2:00 PM":"","2:30 PM":"","3:00 PM":"","3:30 PM":"","4:00 PM":"","4:30 PM":"","5:00 PM":"","5:30 PM":"","6:00 PM":"","6:30 PM":"",}
+            with open(schedule_file_name, 'w') as file:
+                file.write(json.dumps(schedule_dict))
+        
+        # Read the file and place on a variable
+        file_schedule = open(schedule_file_name, 'r')
+        sched_contents = file_schedule.read()
+        schedule_dict = ast.literal_eval(sched_contents)
+        file_schedule.close()
+
+        # Create Buttons for available slots and red boxes for slots taken
+        if schedule_dict['10:00 AM'] == "":
+            # button
+        else:
+            # red
+
     else:
-        messagebox.showerror("Invalid Registration","Please select a Barber and Date")
+        messagebox.showerror("Invalid","Please select a Barber and Date")
 
 def get_customer():
     customer = 'Name: ' + entry_1.get() + '\nContact No.: ' + entry_2.get() + '\nEmail: ' + entry_3.get() + '\nAddress: ' + entry_4.get() + '\nBarber: ' + barber_choice.get() + '\nDate: ' + date_choice.get() + '\nTime: '
@@ -33,15 +54,6 @@ def save_to_file(info):
     text_file = open("registered_users.txt", 'a')
     text_file.write(info)
     text_file.close()
-
-def submit_registration():
-    response = messagebox.askokcancel("Confirm Registration","Do you want to submit your registration?")
-    
-    if response == 1:   # If response is 'OK'
-        get_customer()
-        get_question()
-        get_question_stated()
-        root.quit()
 
 def questionnaire():
     # Create Blank Frame
@@ -124,6 +136,15 @@ def questionnaire():
 
     submitButton = Button(root, text="Submit", width=10, command = submit_registration)
     submitButton.place(relx=0.5, rely=0.95, anchor=CENTER)
+
+def submit_registration():
+    response = messagebox.askokcancel("Confirm Registration","Do you want to submit your registration?")
+    
+    if response == 1:   # If response is 'OK'
+        get_customer()
+        get_question()
+        get_question_stated()
+        root.quit()
 
 # Create Main Frame
 frame_register_form = LabelFrame(root, text = " CEE Barber Shop ", pady=50,labelanchor=N, bd=5,font=("bold",20), relief=RIDGE)
