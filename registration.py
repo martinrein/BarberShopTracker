@@ -15,6 +15,7 @@ def select_time():
     """
 
     if (str(barber_choice.get()) != "-- Select a Barber --") & (str(date_choice.get()) != "-- Select from Available Dates --"):
+        global time_window
         time_window = Toplevel()
         time_window.geometry('250x550')
         time_window.title('Select an Appointment')
@@ -34,126 +35,126 @@ def select_time():
 
         # Create Buttons for available slots and slots taken
         if schedule_dict['10:00 AM'] == "":
-            button_10am = Button(time_window, text="10:00 AM - 10:30 AM",height=1,width=20,fg="green")#, command = )
-            button_10am.place(relx=0.5, rely=0.1, anchor=CENTER)
+            button_1000am = Button(time_window, text="10:00 AM - 10:30 AM",height=1,width=20,fg="green", command = lambda: submit_time(button_1000am))
+            button_1000am.place(relx=0.5, rely=0.1, anchor=CENTER)
         else:
-            red_10am = Button(time_window, text="10:00 AM - 10:30 AM",height=1,width=20,fg='red', command = time_taken)
-            red_10am.place(anchor="c", relx=0.5, rely=0.1)
+            red_1000am = Button(time_window, text="10:00 AM - 10:30 AM",height=1,width=20,fg='red', command = time_taken)
+            red_1000am.place(anchor="c", relx=0.5, rely=0.1)
 
         if schedule_dict['10:30 AM'] == "":
-            button_1030am = Button(time_window, text="10:30 AM - 11:00 AM",height=1,width=20,fg="green")#, command = )
+            button_1030am = Button(time_window, text="10:30 AM - 11:00 AM",height=1,width=20,fg="green", command = lambda: submit_time(button_1030am))
             button_1030am.place(relx=0.5, rely=0.15, anchor=CENTER)
         else:
             red_1030am = Button(time_window, text="10:30 AM - 11:00 AM",height=1,width=20,fg='red', command = time_taken)
             red_1030am.place(anchor="c", relx=0.5, rely=0.15)
 
         if schedule_dict['11:00 AM'] == "":
-            button_1100am = Button(time_window, text="11:00 AM - 11:30 AM",height=1,width=20,fg="green")#, command = )
+            button_1100am = Button(time_window, text="11:00 AM - 11:30 AM",height=1,width=20,fg="green", command = lambda: submit_time(button_1100am))
             button_1100am.place(relx=0.5, rely=0.2, anchor=CENTER)
         else:
             red_1100am = Button(time_window, text="11:00 AM - 11:30 AM",height=1,width=20,fg='red', command = time_taken)
             red_1100am.place(anchor="c", relx=0.5, rely=0.2)
         
         if schedule_dict['11:30 AM'] == "":
-            button_1130am = Button(time_window, text="11:30 AM - 12:00 PM",height=1,width=20,fg="green")#, command = )
+            button_1130am = Button(time_window, text="11:30 AM - 12:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_1130am))
             button_1130am.place(relx=0.5, rely=0.25, anchor=CENTER)
         else:
             red_1130am = Button(time_window, text="11:30 AM - 12:00 PM",height=1,width=20,fg='red', command = time_taken)
             red_1130am.place(anchor="c", relx=0.5, rely=0.25)
 
         if schedule_dict['12:00 PM'] == "":
-            button_1200pm = Button(time_window, text="12:00 PM - 12:30 PM",height=1,width=20,fg="green")#, command = )
+            button_1200pm = Button(time_window, text="12:00 PM - 12:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_1200pm))
             button_1200pm.place(relx=0.5, rely=0.3, anchor=CENTER)
         else:
             red_1200pm = Button(time_window, text="12:00 PM - 12:30 PM",height=1,width=20,fg='red', command = time_taken)
             red_1200pm.place(anchor="c", relx=0.5, rely=0.3)
   
         if schedule_dict['12:30 PM'] == "":
-            button_1230pm = Button(time_window, text="12:30 PM - 1:00 PM",height=1,width=20,fg="green")#, command = )
+            button_1230pm = Button(time_window, text="12:30 PM - 1:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_1230pm))
             button_1230pm.place(relx=0.5, rely=0.35, anchor=CENTER)
         else:
             red_1230pm = Button(time_window, text="12:30 PM - 1:00 PM",height=1,width=20,fg='red', command = time_taken)
             red_1230pm.place(anchor="c", relx=0.5, rely=0.35)
 
         if schedule_dict['1:00 PM'] == "":
-            button_100pm = Button(time_window, text="1:00 PM - 1:30 PM",height=1,width=20,fg="green")#, command = )
+            button_100pm = Button(time_window, text="1:00 PM - 1:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_100pm))
             button_100pm.place(relx=0.5, rely=0.4, anchor=CENTER)
         else:
             red_100pm = Button(time_window, text="1:00 PM - 1:30 PM",height=1,width=20,fg='red', command = time_taken)
             red_100pm.place(anchor="c", relx=0.5, rely=0.4)
 
         if schedule_dict['1:30 PM'] == "":
-            button_130pm = Button(time_window, text="1:30 PM - 2:00 PM",height=1,width=20,fg="green")#, command = )
+            button_130pm = Button(time_window, text="1:30 PM - 2:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_130pm))
             button_130pm.place(relx=0.5, rely=0.45, anchor=CENTER)
         else:
             red_130pm = Button(time_window, text="1:30 PM - 2:00 PM",height=1,width=20,fg='red', command = time_taken)
             red_130pm.place(anchor="c", relx=0.5, rely=0.45)
 
         if schedule_dict['2:00 PM'] == "":
-            button_200pm = Button(time_window, text="2:00 PM - 2:30 PM",height=1,width=20,fg="green")#, command = )
+            button_200pm = Button(time_window, text="2:00 PM - 2:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_200pm))
             button_200pm.place(relx=0.5, rely=0.5, anchor=CENTER)
         else:
             red_200pm = Button(time_window, text="2:00 PM - 2:30 PM",height=1,width=20,fg='red', command = time_taken)
             red_200pm.place(anchor="c", relx=0.5, rely=0.5)
 
         if schedule_dict['2:30 PM'] == "":
-            button_230pm = Button(time_window, text="2:30 PM - 3:00 PM",height=1,width=20,fg="green")#, command = )
+            button_230pm = Button(time_window, text="2:30 PM - 3:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_230pm))
             button_230pm.place(relx=0.5, rely=0.55, anchor=CENTER)
         else:
             red_230pm = Button(time_window, text="2:30 PM - 3:00 PM",height=1,width=20,fg='red', command = time_taken)
             red_230pm.place(anchor="c", relx=0.5, rely=0.55)
 
         if schedule_dict['3:00 PM'] == "":
-            button_300pm = Button(time_window, text="3:00 PM - 3:30 PM",height=1,width=20,fg="green")#, command = )
+            button_300pm = Button(time_window, text="3:00 PM - 3:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_300pm))
             button_300pm.place(relx=0.5, rely=0.6, anchor=CENTER)
         else:
             red_300pm = Button(time_window, text="3:00 PM - 3:30 PM",height=1,width=20,fg='red', command = time_taken)
             red_300pm.place(anchor="c", relx=0.5, rely=0.6)
 
         if schedule_dict['3:30 PM'] == "":
-            button_330pm = Button(time_window, text="3:30 PM - 4:00 PM",height=1,width=20,fg="green")#, command = )
+            button_330pm = Button(time_window, text="3:30 PM - 4:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_330pm))
             button_330pm.place(relx=0.5, rely=0.65, anchor=CENTER)
         else:
             red_330pm = Button(time_window, text="3:30 PM - 4:00 PM",height=1,width=20,fg='red', command = time_taken)
             red_330pm.place(anchor="c", relx=0.5, rely=0.65)
 
         if schedule_dict['4:00 PM'] == "":
-            button_400pm = Button(time_window, text="4:00 PM - 4:30 PM",height=1,width=20,fg="green")#, command = )
+            button_400pm = Button(time_window, text="4:00 PM - 4:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_400pm))
             button_400pm.place(relx=0.5, rely=0.7, anchor=CENTER)
         else:
             red_400pm = Button(time_window, text="4:00 PM - 4:30 PM",height=1,width=20,fg='red', command = time_taken)
             red_400pm.place(anchor="c", relx=0.5, rely=0.7)
 
         if schedule_dict['4:30 PM'] == "":
-            button_430pm = Button(time_window, text="4:30 PM - 5:00 PM",height=1,width=20,fg="green")#, command = )
+            button_430pm = Button(time_window, text="4:30 PM - 5:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_430pm))
             button_430pm.place(relx=0.5, rely=0.75, anchor=CENTER)
         else:
             red_430pm = Button(time_window, text="4:30 PM - 5:00 PM",height=1,width=20,fg='red', command = time_taken)
             red_430pm.place(anchor="c", relx=0.5, rely=0.75)
 
         if schedule_dict['5:00 PM'] == "":
-            button_500pm = Button(time_window, text="5:00 PM - 5:30 PM",height=1,width=20,fg="green")#, command = )
+            button_500pm = Button(time_window, text="5:00 PM - 5:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_500pm))
             button_500pm.place(relx=0.5, rely=0.8, anchor=CENTER)
         else:
             red_500pm = Button(time_window, text="5:00 PM - 5:30 PM",height=1,width=20,fg='red', command = time_taken)
             red_500pm.place(anchor="c", relx=0.5, rely=0.8)
         
         if schedule_dict['5:30 PM'] == "":
-            button_530pm = Button(time_window, text="5:30 PM - 6:00 PM",height=1,width=20,fg="green")#, command = )
+            button_530pm = Button(time_window, text="5:30 PM - 6:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_530pm))
             button_530pm.place(relx=0.5, rely=0.85, anchor=CENTER)
         else:
             red_530pm = Button(time_window, text="5:30 PM - 6:00 PM",height=1,width=20,fg='red', command = time_taken)
             red_530pm.place(anchor="c", relx=0.5, rely=0.85)
 
         if schedule_dict['6:00 PM'] == "":
-            button_600pm = Button(time_window, text="6:00 PM - 6:30 PM",height=1,width=20,fg="green")#, command = )
+            button_600pm = Button(time_window, text="6:00 PM - 6:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_600pm))
             button_600pm.place(relx=0.5, rely=0.9, anchor=CENTER)
         else:
             red_600pm = Button(time_window, text="6:00 PM - 6:30 PM",height=1,width=20,fg='red', command = time_taken)
             red_600pm.place(anchor="c", relx=0.5, rely=0.9)
 
         if schedule_dict['6:30 PM'] == "":
-            button_630pm = Button(time_window, text="6:30 PM - 7:00 PM",height=1,width=20,fg="green")#, command = )
+            button_630pm = Button(time_window, text="6:30 PM - 7:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_630pm))
             button_630pm.place(relx=0.5, rely=0.95, anchor=CENTER)
         else:
             red_630pm = Button(time_window, text="6:30 PM - 7:00 PM",height=1,width=20,fg='red', command = time_taken)
@@ -162,8 +163,12 @@ def select_time():
     else:
         messagebox.showerror("Invalid","Please select a Barber and Date")
 
-#def submit_time()
+def submit_time(button):
+    selected_time = messagebox.askokcancel("Confirm Time Slot","You selected "+ button["text"] +".\n\nDo you want to schedule this time slot?")
 
+    if selected_time == 1:
+        time_window.destroy()
+        # add label on root window
 
 def time_taken():
     """
