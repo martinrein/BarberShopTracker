@@ -1,9 +1,12 @@
 Name: Sample Name
-Contact No.: 1234567
-Email: sample@email.com
+Contact No.: 123456
+Email: sample@address.com
 Address: Sample, Address
-Question 1-5: NO, NO, NO, NO, NO
-Question 6-10: YES, YES, NO, NO, NO
+Barber: Enrico
+Date: September 24, 2020
+Time: 10:30 AM - 11:00 AM
+Question 1-5: NO, YES, NO, NO, NO
+Question 6-10: YES, YES, YES, NO, YES
 Question 6 Stated: asthma
-Question 7 Stated: Philippines
+Question 7 Stated: philippines
 

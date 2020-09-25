@@ -14,7 +14,8 @@ def select_time():
     This function asks the user to select a time slot to schedule their appointment.
     """
 
-    if (str(barber_choice.get()) != "-- Select a Barber --") & (str(date_choice.get()) != "-- Select from Available Dates --"):
+    if (str(barber_choice.get()) != "-- Select a Barber --") & \
+        (str(date_choice.get()) != "-- Select from Available Dates --"):
         global time_window
         time_window = Toplevel()
         time_window.geometry('250x550')
@@ -23,7 +24,13 @@ def select_time():
         # Create Schedule File if the file does not exist yet
         schedule_file_name = date_choice.get() + ' - ' + barber_choice.get() + '.txt'
         if (os.path.exists('./' + schedule_file_name)) == False:
-            schedule_dict = {"10:00 AM - 10:30 AM":"","10:30 AM - 11:00 AM":"","11:00 AM - 11:30 AM":"","11:30 AM - 12:00 PM":"","12:00 PM - 12:30 PM":"","12:30 PM - 1:00 PM":"","1:00 PM - 1:30 PM":"","1:30 PM - 2:00 PM":"","2:00 PM - 2:30 PM":"","2:30 PM - 3:00 PM":"","3:00 PM - 3:30 PM":"","3:30 PM - 4:00 PM":"","4:00 PM - 4:30 PM":"","4:30 PM - 5:00 PM":"","5:00 PM - 5:30 PM":"","5:30 PM - 6:00 PM":"","6:00 PM - 6:30 PM":"","6:30 PM - 7:00 PM":""}
+            schedule_dict = {"10:00 AM - 10:30 AM":"","10:30 AM - 11:00 AM":"",\
+                "11:00 AM - 11:30 AM":"","11:30 AM - 12:00 PM":"","12:00 PM - 12:30 PM":"",\
+                    "12:30 PM - 1:00 PM":"","1:00 PM - 1:30 PM":"","1:30 PM - 2:00 PM":"",\
+                        "2:00 PM - 2:30 PM":"","2:30 PM - 3:00 PM":"","3:00 PM - 3:30 PM":"",\
+                            "3:30 PM - 4:00 PM":"","4:00 PM - 4:30 PM":"","4:30 PM - 5:00 PM":"",\
+                                "5:00 PM - 5:30 PM":"","5:30 PM - 6:00 PM":"","6:00 PM - 6:30 PM":"",\
+                                    "6:30 PM - 7:00 PM":""}
             with open(schedule_file_name, 'w') as file:
                 file.write(json.dumps(schedule_dict))
         
@@ -35,129 +42,165 @@ def select_time():
 
         # Create Buttons for available slots and slots taken
         if schedule_dict['10:00 AM - 10:30 AM'] == "":
-            button_1000am = Button(time_window, text="10:00 AM - 10:30 AM",height=1,width=20,fg="green", command = lambda: submit_time(button_1000am))
+            button_1000am = Button(time_window, text="10:00 AM - 10:30 AM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_1000am))
             button_1000am.place(relx=0.5, rely=0.1, anchor=CENTER)
         else:
-            red_1000am = Button(time_window, text="10:00 AM - 10:30 AM",height=1,width=20,fg='red', command = time_taken)
+            red_1000am = Button(time_window, text="10:00 AM - 10:30 AM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_1000am.place(anchor="c", relx=0.5, rely=0.1)
 
         if schedule_dict['10:30 AM - 11:00 AM'] == "":
-            button_1030am = Button(time_window, text="10:30 AM - 11:00 AM",height=1,width=20,fg="green", command = lambda: submit_time(button_1030am))
+            button_1030am = Button(time_window, text="10:30 AM - 11:00 AM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_1030am))
             button_1030am.place(relx=0.5, rely=0.15, anchor=CENTER)
         else:
-            red_1030am = Button(time_window, text="10:30 AM - 11:00 AM",height=1,width=20,fg='red', command = time_taken)
+            red_1030am = Button(time_window, text="10:30 AM - 11:00 AM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_1030am.place(anchor="c", relx=0.5, rely=0.15)
 
         if schedule_dict['11:00 AM - 11:30 AM'] == "":
-            button_1100am = Button(time_window, text="11:00 AM - 11:30 AM",height=1,width=20,fg="green", command = lambda: submit_time(button_1100am))
+            button_1100am = Button(time_window, text="11:00 AM - 11:30 AM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_1100am))
             button_1100am.place(relx=0.5, rely=0.2, anchor=CENTER)
         else:
-            red_1100am = Button(time_window, text="11:00 AM - 11:30 AM",height=1,width=20,fg='red', command = time_taken)
+            red_1100am = Button(time_window, text="11:00 AM - 11:30 AM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_1100am.place(anchor="c", relx=0.5, rely=0.2)
         
         if schedule_dict['11:30 AM - 12:00 PM'] == "":
-            button_1130am = Button(time_window, text="11:30 AM - 12:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_1130am))
+            button_1130am = Button(time_window, text="11:30 AM - 12:00 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_1130am))
             button_1130am.place(relx=0.5, rely=0.25, anchor=CENTER)
         else:
-            red_1130am = Button(time_window, text="11:30 AM - 12:00 PM",height=1,width=20,fg='red', command = time_taken)
+            red_1130am = Button(time_window, text="11:30 AM - 12:00 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_1130am.place(anchor="c", relx=0.5, rely=0.25)
 
         if schedule_dict['12:00 PM - 12:30 PM'] == "":
-            button_1200pm = Button(time_window, text="12:00 PM - 12:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_1200pm))
+            button_1200pm = Button(time_window, text="12:00 PM - 12:30 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_1200pm))
             button_1200pm.place(relx=0.5, rely=0.3, anchor=CENTER)
         else:
-            red_1200pm = Button(time_window, text="12:00 PM - 12:30 PM",height=1,width=20,fg='red', command = time_taken)
+            red_1200pm = Button(time_window, text="12:00 PM - 12:30 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_1200pm.place(anchor="c", relx=0.5, rely=0.3)
   
         if schedule_dict['12:30 PM - 1:00 PM'] == "":
-            button_1230pm = Button(time_window, text="12:30 PM - 1:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_1230pm))
+            button_1230pm = Button(time_window, text="12:30 PM - 1:00 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_1230pm))
             button_1230pm.place(relx=0.5, rely=0.35, anchor=CENTER)
         else:
-            red_1230pm = Button(time_window, text="12:30 PM - 1:00 PM",height=1,width=20,fg='red', command = time_taken)
+            red_1230pm = Button(time_window, text="12:30 PM - 1:00 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_1230pm.place(anchor="c", relx=0.5, rely=0.35)
 
         if schedule_dict['1:00 PM - 1:30 PM'] == "":
-            button_100pm = Button(time_window, text="1:00 PM - 1:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_100pm))
+            button_100pm = Button(time_window, text="1:00 PM - 1:30 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_100pm))
             button_100pm.place(relx=0.5, rely=0.4, anchor=CENTER)
         else:
-            red_100pm = Button(time_window, text="1:00 PM - 1:30 PM",height=1,width=20,fg='red', command = time_taken)
+            red_100pm = Button(time_window, text="1:00 PM - 1:30 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_100pm.place(anchor="c", relx=0.5, rely=0.4)
 
         if schedule_dict['1:30 PM - 2:00 PM'] == "":
-            button_130pm = Button(time_window, text="1:30 PM - 2:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_130pm))
+            button_130pm = Button(time_window, text="1:30 PM - 2:00 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_130pm))
             button_130pm.place(relx=0.5, rely=0.45, anchor=CENTER)
         else:
-            red_130pm = Button(time_window, text="1:30 PM - 2:00 PM",height=1,width=20,fg='red', command = time_taken)
+            red_130pm = Button(time_window, text="1:30 PM - 2:00 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_130pm.place(anchor="c", relx=0.5, rely=0.45)
 
         if schedule_dict['2:00 PM - 2:30 PM'] == "":
-            button_200pm = Button(time_window, text="2:00 PM - 2:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_200pm))
+            button_200pm = Button(time_window, text="2:00 PM - 2:30 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_200pm))
             button_200pm.place(relx=0.5, rely=0.5, anchor=CENTER)
         else:
-            red_200pm = Button(time_window, text="2:00 PM - 2:30 PM",height=1,width=20,fg='red', command = time_taken)
+            red_200pm = Button(time_window, text="2:00 PM - 2:30 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_200pm.place(anchor="c", relx=0.5, rely=0.5)
 
         if schedule_dict['2:30 PM - 3:00 PM'] == "":
-            button_230pm = Button(time_window, text="2:30 PM - 3:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_230pm))
+            button_230pm = Button(time_window, text="2:30 PM - 3:00 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_230pm))
             button_230pm.place(relx=0.5, rely=0.55, anchor=CENTER)
         else:
-            red_230pm = Button(time_window, text="2:30 PM - 3:00 PM",height=1,width=20,fg='red', command = time_taken)
+            red_230pm = Button(time_window, text="2:30 PM - 3:00 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_230pm.place(anchor="c", relx=0.5, rely=0.55)
 
         if schedule_dict['3:00 PM - 3:30 PM'] == "":
-            button_300pm = Button(time_window, text="3:00 PM - 3:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_300pm))
+            button_300pm = Button(time_window, text="3:00 PM - 3:30 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_300pm))
             button_300pm.place(relx=0.5, rely=0.6, anchor=CENTER)
         else:
-            red_300pm = Button(time_window, text="3:00 PM - 3:30 PM",height=1,width=20,fg='red', command = time_taken)
+            red_300pm = Button(time_window, text="3:00 PM - 3:30 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_300pm.place(anchor="c", relx=0.5, rely=0.6)
 
         if schedule_dict['3:30 PM - 4:00 PM'] == "":
-            button_330pm = Button(time_window, text="3:30 PM - 4:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_330pm))
+            button_330pm = Button(time_window, text="3:30 PM - 4:00 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_330pm))
             button_330pm.place(relx=0.5, rely=0.65, anchor=CENTER)
         else:
-            red_330pm = Button(time_window, text="3:30 PM - 4:00 PM",height=1,width=20,fg='red', command = time_taken)
+            red_330pm = Button(time_window, text="3:30 PM - 4:00 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_330pm.place(anchor="c", relx=0.5, rely=0.65)
 
         if schedule_dict['4:00 PM - 4:30 PM'] == "":
-            button_400pm = Button(time_window, text="4:00 PM - 4:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_400pm))
+            button_400pm = Button(time_window, text="4:00 PM - 4:30 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_400pm))
             button_400pm.place(relx=0.5, rely=0.7, anchor=CENTER)
         else:
-            red_400pm = Button(time_window, text="4:00 PM - 4:30 PM",height=1,width=20,fg='red', command = time_taken)
+            red_400pm = Button(time_window, text="4:00 PM - 4:30 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_400pm.place(anchor="c", relx=0.5, rely=0.7)
 
         if schedule_dict['4:30 PM - 5:00 PM'] == "":
-            button_430pm = Button(time_window, text="4:30 PM - 5:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_430pm))
+            button_430pm = Button(time_window, text="4:30 PM - 5:00 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_430pm))
             button_430pm.place(relx=0.5, rely=0.75, anchor=CENTER)
         else:
-            red_430pm = Button(time_window, text="4:30 PM - 5:00 PM",height=1,width=20,fg='red', command = time_taken)
+            red_430pm = Button(time_window, text="4:30 PM - 5:00 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_430pm.place(anchor="c", relx=0.5, rely=0.75)
 
         if schedule_dict['5:00 PM - 5:30 PM'] == "":
-            button_500pm = Button(time_window, text="5:00 PM - 5:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_500pm))
+            button_500pm = Button(time_window, text="5:00 PM - 5:30 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_500pm))
             button_500pm.place(relx=0.5, rely=0.8, anchor=CENTER)
         else:
-            red_500pm = Button(time_window, text="5:00 PM - 5:30 PM",height=1,width=20,fg='red', command = time_taken)
+            red_500pm = Button(time_window, text="5:00 PM - 5:30 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_500pm.place(anchor="c", relx=0.5, rely=0.8)
         
         if schedule_dict['5:30 PM - 6:00 PM'] == "":
-            button_530pm = Button(time_window, text="5:30 PM - 6:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_530pm))
+            button_530pm = Button(time_window, text="5:30 PM - 6:00 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_530pm))
             button_530pm.place(relx=0.5, rely=0.85, anchor=CENTER)
         else:
-            red_530pm = Button(time_window, text="5:30 PM - 6:00 PM",height=1,width=20,fg='red', command = time_taken)
+            red_530pm = Button(time_window, text="5:30 PM - 6:00 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_530pm.place(anchor="c", relx=0.5, rely=0.85)
 
         if schedule_dict['6:00 PM - 6:30 PM'] == "":
-            button_600pm = Button(time_window, text="6:00 PM - 6:30 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_600pm))
+            button_600pm = Button(time_window, text="6:00 PM - 6:30 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_600pm))
             button_600pm.place(relx=0.5, rely=0.9, anchor=CENTER)
         else:
-            red_600pm = Button(time_window, text="6:00 PM - 6:30 PM",height=1,width=20,fg='red', command = time_taken)
+            red_600pm = Button(time_window, text="6:00 PM - 6:30 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_600pm.place(anchor="c", relx=0.5, rely=0.9)
 
         if schedule_dict['6:30 PM - 7:00 PM'] == "":
-            button_630pm = Button(time_window, text="6:30 PM - 7:00 PM",height=1,width=20,fg="green", command = lambda: submit_time(button_630pm))
+            button_630pm = Button(time_window, text="6:30 PM - 7:00 PM",height=1,width=20,\
+                fg="green", command = lambda: submit_time(button_630pm))
             button_630pm.place(relx=0.5, rely=0.95, anchor=CENTER)
         else:
-            red_630pm = Button(time_window, text="6:30 PM - 7:00 PM",height=1,width=20,fg='red', command = time_taken)
+            red_630pm = Button(time_window, text="6:30 PM - 7:00 PM",height=1,width=20,\
+                fg='red', command = time_taken)
             red_630pm.place(anchor="c", relx=0.5, rely=0.95)
 
     else:
@@ -165,14 +208,16 @@ def select_time():
 
 def submit_time(button):
     """
-    This function asks the user to confirm
+    This function asks the user to confirm their time slot choice.
     """
 
     global timeslot_str
     global label_time
     timeslot_str = button["text"]
-    selected_time = messagebox.askokcancel("Confirm Time Slot","You selected "+ timeslot_str +".\n\nDo you want to schedule this time slot?")
+    selected_time = messagebox.askokcancel("Confirm Time Slot","You selected "+ \
+        timeslot_str +".\n\nDo you want to schedule this time slot?")
 
+    # Display the selected time slot on the main window
     if selected_time == 1:
         label_time = Label(root, text="> Selected Time: " + timeslot_str, width=30,font=("bold",12))
         label_time.place(relx=0.3, rely=0.6)
@@ -191,7 +236,10 @@ def confirm_registration():
     questionnaire form would appear.
     """
 
-    confirmation = messagebox.askokcancel("Confirm Registration","Name: " + entry_1.get() + "\nContact No.: " + entry_2.get() + "\nEmail: " + entry_3.get() + "\nAddress: " + entry_4.get() + "\nBarber: " + barber_choice.get() + "\nDate: " + date_choice.get() + "\nTime: " + timeslot_str)
+    confirmation = messagebox.askokcancel("Confirm Registration","Name: " + entry_1.get() + \
+        "\nContact No.: " + entry_2.get() + "\nEmail: " + entry_3.get() + "\nAddress: " + \
+            entry_4.get() + "\nBarber: " + barber_choice.get() + "\nDate: " + date_choice.get() + \
+                "\nTime: " + timeslot_str)
 
     if confirmation == 1:   
         questionnaire()
@@ -202,7 +250,9 @@ def get_customer():
     these information into a text file.
     """
 
-    customer = 'Name: ' + entry_1.get() + '\nContact No.: ' + entry_2.get() + '\nEmail: ' + entry_3.get() + '\nAddress: ' + entry_4.get() + '\nBarber: ' + barber_choice.get() + '\nDate: ' + date_choice.get() + '\nTime: ' + timeslot_str
+    customer = 'Name: ' + entry_1.get() + '\nContact No.: ' + entry_2.get() + '\nEmail: ' + \
+        entry_3.get() + '\nAddress: ' + entry_4.get() + '\nBarber: ' + barber_choice.get() + \
+            '\nDate: ' + date_choice.get() + '\nTime: ' + timeslot_str
     save_to_file(customer)
 
 def get_question():
@@ -211,13 +261,16 @@ def get_question():
     to save these information into a text file.
     """
 
-    answers = '\nQuestion 1-5: ' + str(q1_value.get()) + ', ' + str(q2_value.get()) + ', ' + str(q3_value.get()) + ', ' + str(q4_value.get()) + ', ' + str(q5_value.get()) + '\nQuestion 6-10: ' + str(q6_value.get()) + ', ' + str(q7_value.get()) + ', ' + str(q8_value.get()) + ', ' + str(q9_value.get()) + ', ' + str(q10_value.get())
+    answers = '\nQuestion 1-5: ' + str(q1_value.get()) + ', ' + str(q2_value.get()) + ', ' + \
+        str(q3_value.get()) + ', ' + str(q4_value.get()) + ', ' + str(q5_value.get()) + \
+            '\nQuestion 6-10: ' + str(q6_value.get()) + ', ' + str(q7_value.get()) + ', ' + \
+                str(q8_value.get()) + ', ' + str(q9_value.get()) + ', ' + str(q10_value.get())
     save_to_file(answers)
 
 def get_question_stated():
     """
-    This function gets the answer from question 6 and 7 from the questionnaire form. Then it calls a function 
-    to save these information into a text file.
+    This function gets the answer from question 6 and 7 from the questionnaire form. 
+    Then it calls a function to save these information into a text file.
     """
 
     stated = '\nQuestion 6 Stated: ' + q6_entry.get() + '\nQuestion 7 Stated: ' + q7_entry.get() + '\n\n'
@@ -234,9 +287,8 @@ def save_to_file(info):
 
 def questionnaire():
     """
-    This function creates and display a questionnaire form. The 
-    form consists 10 questions that will be answered by using 
-    radiobuttons of 'Yes' and 'No'.
+    This function creates and display a questionnaire form. The form consists 10 questions 
+    that will be answered by using radiobuttons of 'Yes' and 'No'.
     """
 
     # Create Blank Frame
@@ -261,25 +313,35 @@ def questionnaire():
     label_ifyes_2.place(relx=0.055, rely=0.64)
 
     # Create Question Label Widgets 
-    q1 = Label(white_frame, text="1.   Have you been experiencing any colds lately?", width=40,font=("bold",12), anchor=W,justify=LEFT)
+    q1 = Label(white_frame, width=40, font=("bold",12), anchor=W, justify=LEFT,\
+        text="1.   Have you been experiencing any colds lately?")
     q1.place(relx=0.01, rely=0.05)
-    q2 = Label(white_frame, text="2.   Have you had a fever lately?", width=40,font=("bold",12), anchor=W,justify=LEFT)
+    q2 = Label(white_frame, width=40, font=("bold",12), anchor=W, justify=LEFT,\
+        text="2.   Have you had a fever lately?")
     q2.place(relx=0.01, rely=0.13)
-    q3 = Label(white_frame, text="3.   Have you been experiencing any cough lately?", width=40,font=("bold",12), anchor=W,justify=LEFT)
+    q3 = Label(white_frame, width=40, font=("bold",12), anchor=W, justify=LEFT,\
+        text="3.   Have you been experiencing any cough lately?")
     q3.place(relx=0.01, rely=0.21)
-    q4 = Label(white_frame, text="4.   Have you been experiencing any shortness of breath\n      lately?", width=40,font=("bold",12), anchor=W,justify=LEFT)
+    q4 = Label(white_frame, width=40, font=("bold",12), anchor=W, justify=LEFT,\
+        text="4.   Have you been experiencing any shortness of breath\n      lately?")
     q4.place(relx=0.01, rely=0.29)
-    q5 = Label(white_frame, text="5.   Have you been experiencing any sore throat lately?", width=40,font=("bold",12), anchor=W,justify=LEFT)
+    q5 = Label(white_frame, width=40, font=("bold",12), anchor=W, justify=LEFT,\
+        text="5.   Have you been experiencing any sore throat lately?")
     q5.place(relx=0.01, rely=0.37)
-    q6 = Label(white_frame, text="6.   Do you have any case of asthma or any other\n      disease?", width=40,font=("bold",12), anchor=W,justify=LEFT)
+    q6 = Label(white_frame, width=40, font=("bold",12), anchor=W, justify=LEFT,\
+        text="6.   Do you have any case of asthma or any other\n      disease?")
     q6.place(relx=0.01, rely=0.45)
-    q7 = Label(white_frame, text="7.   In the past 30 days have you been to any other\n      country?", width=40,font=("bold",12), anchor=W,justify=LEFT)
+    q7 = Label(white_frame, width=40, font=("bold",12), anchor=W, justify=LEFT,\
+        text="7.   In the past 30 days have you been to any other\n      country?")
     q7.place(relx=0.01, rely=0.57)
-    q8 = Label(white_frame, text="8.   Do you have any senior citizens at home? ", width=40,font=("bold",12), anchor=W,justify=LEFT)
+    q8 = Label(white_frame, width=40, font=("bold",12), anchor=W, justify=LEFT,\
+        text="8.   Do you have any senior citizens at home? ")
     q8.place(relx=0.01, rely=0.69)
-    q9 = Label(white_frame, text="9.   Do you work in any healthcare organization?", width=40,font=("bold",12), anchor=W,justify=LEFT)
+    q9 = Label(white_frame, width=40, font=("bold",12), anchor=W, justify=LEFT,\
+        text="9.   Do you work in any healthcare organization?")
     q9.place(relx=0.01, rely=0.77)
-    q10 = Label(white_frame, text="10. Do you agree to follow the rules and regulations\n       regarding COVID-19 safety and precautions?", width=40,font=("bold",12), anchor=W,justify=LEFT)
+    q10 = Label(white_frame, width=40, font=("bold",12), anchor=W, justify=LEFT,\
+        text="10. Do you agree to follow the rules and regulations\n       regarding COVID-19 safety and precautions?")
     q10.place(relx=0.01, rely=0.85)
 
     # Place Questionnaire Entry Widgets
@@ -324,9 +386,8 @@ def questionnaire():
 
 def submit_registration():
     """
-    This function asks the user to confirm their registration. 
-    If the response is 'OK', it saves all inputs of the user 
-    into a text file. Then it automatically exits the program.
+    This function asks the user to confirm their registration. If the response is 'OK', it saves 
+    all inputs of the user into a text file. Then it automatically exits the program.
     """
 
     response = messagebox.askokcancel("Confirm Registration","Do you want to submit your registration?")
@@ -343,6 +404,7 @@ def submit_registration():
         schedule_dict = ast.literal_eval(sched_contents)
         file_schedule.close()
 
+        # Places the selected time slot into the file
         schedule_dict[timeslot_str] = entry_1.get() + ' - ' + entry_2.get()
         with open(schedule_file_name, 'w') as file:
             file.write(json.dumps(schedule_dict))
@@ -350,7 +412,8 @@ def submit_registration():
         root.quit()
 
 # Create Main Frame
-frame_register_form = LabelFrame(root, text = " CEE Barber Shop ", pady=50,labelanchor=N, bd=5,font=("bold",20), relief=RIDGE)
+frame_register_form = LabelFrame(root, text = " CEE Barber Shop ", pady=50,labelanchor=N,\
+    bd=5,font=("bold",20), relief=RIDGE)
 frame_register_form.pack(fill="both", expand=True,padx=20, pady=80)
 white_frame = Frame(width=440, height=550, background="white")
 

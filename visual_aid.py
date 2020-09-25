@@ -15,20 +15,23 @@ def open_file():
     """
 
     root.filename = filedialog.askopenfilename(title="Please select a file", filetypes=((".txt files", "*.txt"),("all files", "*.*")))
+    
+    # Create Label Widgets
     label_filename = Label(root, text=root.filename,font=("bold",10))
     label_filename.pack()
-
     label_header = Label(root, text="Barber's Schedule", width=25,font=("bold",20),relief=RIDGE)
     label_header.place(relx=0.5, rely=0.05,anchor=CENTER)
 
+    # Reads the text file and place the content into a variable
     file_schedule = open(root.filename, 'r')
     sched_contents = file_schedule.read()
     schedule_dict = ast.literal_eval(sched_contents)
     file_schedule.close()
 
-    # Removes Button
+    # Removes Button Widget on the window
     open_file_button.destroy()
 
+    # Display schedule of the barber
     if schedule_dict["10:00 AM - 10:30 AM"] == "":
         label_1 = Label(root, text="n/a", width=40,font=("bold",12),bg= "white",relief=RIDGE)
         label_1.place(relx=0.64, rely=0.1,anchor=CENTER)
@@ -155,6 +158,7 @@ def open_file():
         label_18 = Label(root, text=schedule_dict["6:30 PM - 7:00 PM"], width=40,font=("bold",12),bg= "lime",relief=RIDGE)
         label_18.place(relx=0.64, rely=0.95,anchor=CENTER)
 
+    # Create Label Widgets
     label_10am = Label(root, text="10:00 AM - 10:30 AM", width=18,font=("bold",12))
     label_10am.place(relx=0.2, rely=0.1,anchor=CENTER)
     label_10am = Label(root, text="10:30 AM - 11:00 AM", width=18,font=("bold",12))
@@ -191,8 +195,8 @@ def open_file():
     label_10am.place(relx=0.2, rely=0.9,anchor=CENTER)
     label_10am = Label(root, text="6:30 PM - 7:00 PM", width=18,font=("bold",12))
     label_10am.place(relx=0.2, rely=0.95,anchor=CENTER)
-        
 
+# Create Button Widget
 open_file_button = Button(root, text="Click this to select a Text File", command=open_file)
 open_file_button.place(relx=0.5, rely=0.03, anchor=CENTER)
 
