@@ -10,6 +10,10 @@ root.geometry('500x750')
 root.title("CEE Barber Shop")
 
 def select_time():
+    """
+    This function asks the user to select a time slot to schedule their appointment.
+    """
+
     if (str(barber_choice.get()) != "-- Select a Barber --") & (str(date_choice.get()) != "-- Select from Available Dates --"):
         time_window = Toplevel()
         time_window.geometry('250x550')
@@ -162,17 +166,36 @@ def select_time():
 
 
 def time_taken():
+    """
+    This function outputs an error message. It would ask the user to select another time slot.
+    """
+
     messagebox.showerror("Slot Taken", "This time slot has been taken. Please select another time slot.")
 
 def get_customer():
+    """
+    This function gets all inputs from the registration form. Then it calls a function to save 
+    these information into a text file.
+    """
+
     customer = 'Name: ' + entry_1.get() + '\nContact No.: ' + entry_2.get() + '\nEmail: ' + entry_3.get() + '\nAddress: ' + entry_4.get() + '\nBarber: ' + barber_choice.get() + '\nDate: ' + date_choice.get() + '\nTime: '
     save_to_file(customer)
 
 def get_question():
+    """
+    This function gets the radiobutton answers from the questionnaire form. Then it calls a function 
+    to save these information into a text file.
+    """
+
     answers = '\nQuestion 1-5: ' + str(q1_value.get()) + ', ' + str(q2_value.get()) + ', ' + str(q3_value.get()) + ', ' + str(q4_value.get()) + ', ' + str(q5_value.get()) + '\nQuestion 6-10: ' + str(q6_value.get()) + ', ' + str(q7_value.get()) + ', ' + str(q8_value.get()) + ', ' + str(q9_value.get()) + ', ' + str(q10_value.get())
     save_to_file(answers)
 
 def get_question_stated():
+    """
+    This function gets the answer from question 6 and 7 from the questionnaire form. Then it calls a function 
+    to save these information into a text file.
+    """
+
     stated = '\nQuestion 6 Stated: ' + q6_entry.get() + '\nQuestion 7 Stated: ' + q7_entry.get() + '\n\n'
     save_to_file(stated)
     
@@ -180,11 +203,18 @@ def save_to_file(info):
     """
     This function saves the registered user's information into a text file.
     """
+
     text_file = open("registered_users.txt", 'a')
     text_file.write(info)
     text_file.close()
 
 def questionnaire():
+    """
+    This function creates and display a questionnaire form. The 
+    form consists 10 questions that will be answered by using 
+    radiobuttons of 'Yes' and 'No'.
+    """
+
     # Create Blank Frame
     white_frame.place(in_=frame_register_form, anchor="c", relx=.5, rely=.5)
     
@@ -263,13 +293,20 @@ def questionnaire():
     Radiobutton(white_frame, variable = q10_value, value = "NO").place(relx=0.9, rely=0.85)
     q10_value.set(0)
 
+    # Create Submit Button
     submitButton = Button(root, text="Submit", width=10, command = submit_registration)
     submitButton.place(relx=0.5, rely=0.95, anchor=CENTER)
 
 def submit_registration():
+    """
+    This function asks the user to confirm their registration. 
+    If the response is 'OK', it saves all inputs of the user 
+    into a text file. Then it automatically exits the program.
+    """
+
     response = messagebox.askokcancel("Confirm Registration","Do you want to submit your registration?")
-    
-    if response == 1:   # If response is 'OK'
+
+    if response == 1:   
         get_customer()
         get_question()
         get_question_stated()
@@ -328,7 +365,7 @@ date_choice.set(date_list[0])
 date_dropdown = OptionMenu(root, date_choice, *date_list)
 date_dropdown.place(relx=0.302, rely=0.48)
 
-# Set Variables of Questionnaire Answers
+# Set Variables for Questionnaire Answers
 q1_value = StringVar()
 q2_value = StringVar()
 q3_value = StringVar()
