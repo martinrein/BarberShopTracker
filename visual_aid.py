@@ -17,7 +17,7 @@ class VisualAid(Tk):
 
         # Create Window
         self.resizable(width=False, height=False)
-        self.geometry('550x700')
+        self.geometry('550x650')
         self.title("Barber's Visual Aid")
 
         # Create Frame Widget
@@ -28,7 +28,7 @@ class VisualAid(Tk):
         
         # Display the Widgets
         self.open_file_button.place(relx=0.5, rely=0.03, anchor=CENTER)
-        self.main_frame.place(height=700, width=550)
+        self.main_frame.place(height=650, width=550)
 
     def open_file(self):
         """
