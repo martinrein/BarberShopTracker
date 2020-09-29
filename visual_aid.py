@@ -11,6 +11,11 @@ class VisualAid(Tk):
         self.setup_window()
 
     def setup_window(self):
+        """
+        This function creates the initial widgets for the program.
+        """
+
+        # Create Window
         self.resizable(width=False, height=False)
         self.geometry('550x700')
         self.title("Barber's Visual Aid")
@@ -26,6 +31,10 @@ class VisualAid(Tk):
         self.main_frame.place(height=700, width=550)
 
     def open_file(self):
+        """
+        This function reads the selected file and displays the schedule.
+        """
+
         # Create File dialog to find file
         self.filename = filedialog.askopenfilename(title="Please select a file", filetypes=((".txt files", "*.txt"),("all files", "*.*")))
 
@@ -51,7 +60,10 @@ class VisualAid(Tk):
         self.display_schedule()
 
     def display_time_labels(self):
-        # Create Label Widgets
+        """
+        This function displays label widgets for every time slot.
+        """
+
         label_10am = Label(self.main_frame, text="10:00 AM - 10:30 AM", width=18,font=("bold",12))
         label_10am.place(relx=0.2, rely=0.1,anchor=CENTER)
         label_1030am = Label(self.main_frame, text="10:30 AM - 11:00 AM", width=18,font=("bold",12))
@@ -90,6 +102,11 @@ class VisualAid(Tk):
         label_630pm.place(relx=0.2, rely=0.95,anchor=CENTER)
 
     def display_schedule(self):
+        """
+        This function displays the schedule of the barber. It shows if the slot is occupied or not.
+        If the slot is occupied, it would display the name and contact number of the customer.
+        """
+
         # Display schedule of the barber
         if self.schedule_dict["10:00 AM - 10:30 AM"] == "":
             label_1 = Label(self.main_frame, text="n/a", width=40,font=("bold",12),bg= "white",relief=RIDGE)
