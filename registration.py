@@ -53,8 +53,8 @@ class Registration(Tk):
         label_header.place(relx=0.5, rely=0.05, anchor=CENTER)
         
         # Create Button
-        nextButton = Button(self.main_frame, text="Next >>", width=10, command = self.confirm_registration)
-        nextButton.place(relx=0.5, rely=0.94, anchor=CENTER)
+        self.nextButton = Button(self.main_frame, text="Next >>", width=10, command = self.confirm_registration)
+        self.nextButton.place(relx=0.5, rely=0.96, anchor=CENTER)
 
     def registration_setup(self):
 
@@ -94,7 +94,7 @@ class Registration(Tk):
         timeButton = Button(self.frame_register_form, text="-- Select an Appointment --", width=21, command = self.select_time)
 
         # Place Widgets on the Frame
-        self.frame_register_form.pack(fill="both", expand=True,padx=20, pady=80)
+        self.frame_register_form.pack(fill="both", expand=True,padx=20, pady=60)
         label_1.place(relx=0.05, rely=-0.05)
         label_2.place(relx=0.09, rely=0.05)
         label_3.place(relx=0.05, rely=0.15)
@@ -350,15 +350,11 @@ class Registration(Tk):
         """
 
         # Create Blank Frame
-        self.questionnaire_frame.place(in_=self.main_frame, anchor="c", relx=.5, rely=.5)
-        #white_frame = Frame(width=440, height=550, background="white")
+        self.questionnaire_frame = Frame(width=500, height=475)
+        self.questionnaire_frame.place(in_=self.main_frame, anchor="c", relx=.5, rely=.52)
         
-        # Remove unnecessary Widgets
-        self.frame_register_form.destroy()
-        # barber_dropdown.destroy()
-        # date_dropdown.destroy()
-        # timeButton.destroy()
-        # label_time.destroy()
+        # Remove unnecessary Widget
+        self.nextButton.destroy()
 
         # Create Label Widgets
         label_header = Label(self.main_frame, text="Questionnaire", width=20,font=("bold",30))
@@ -394,23 +390,9 @@ class Registration(Tk):
         q10 = Label(self.questionnaire_frame, width=40, font=("bold",12), anchor=W, justify=LEFT,\
             text="10. Do you agree to follow the rules and regulations\n       regarding COVID-19 safety and precautions?")
 
+        # Create Question Entry Widgets 
         self.q6_entry = Entry(self.questionnaire_frame, width=19)
         self.q7_entry = Entry(self.questionnaire_frame, width=19)
-
-        # Place Questionnaire Widgets
-        q1.place(relx=0.01, rely=0.05)
-        q2.place(relx=0.01, rely=0.13)
-        q3.place(relx=0.01, rely=0.21)
-        q4.place(relx=0.01, rely=0.29)
-        q5.place(relx=0.01, rely=0.37)
-        q6.place(relx=0.01, rely=0.45)
-        q7.place(relx=0.01, rely=0.57)
-        q8.place(relx=0.01, rely=0.69)
-        q9.place(relx=0.01, rely=0.77)
-        q10.place(relx=0.01, rely=0.85)
-
-        self.q6_entry.place(relx=0.58, rely=0.541, anchor=CENTER)
-        self.q7_entry.place(relx=0.58, rely=0.661, anchor=CENTER)
 
         # Create Yes or No Radio Buttons
         Radiobutton(self.questionnaire_frame, variable = self.q1_value, value = "YES").place(relx=0.8, rely=0.048)
@@ -446,6 +428,20 @@ class Registration(Tk):
 
         # Create Submit Button
         submitButton = Button(self.main_frame, text="Submit", width=10, command = self.submit_registration)
+        
+        # Place Questionnaire Widgets
+        q1.place(relx=0.01, rely=0.05)
+        q2.place(relx=0.01, rely=0.13)
+        q3.place(relx=0.01, rely=0.21)
+        q4.place(relx=0.01, rely=0.29)
+        q5.place(relx=0.01, rely=0.37)
+        q6.place(relx=0.01, rely=0.45)
+        q7.place(relx=0.01, rely=0.57)
+        q8.place(relx=0.01, rely=0.69)
+        q9.place(relx=0.01, rely=0.77)
+        q10.place(relx=0.01, rely=0.85)
+        self.q6_entry.place(relx=0.58, rely=0.541, anchor=CENTER)
+        self.q7_entry.place(relx=0.58, rely=0.661, anchor=CENTER)
         submitButton.place(relx=0.5, rely=0.95, anchor=CENTER)
 
     def get_customer(self):
